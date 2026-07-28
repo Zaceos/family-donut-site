@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { reviews } from '../data/reviews';
+import { site } from '../data/site';
+---
+<Layout title="Reviews" pagePath="/reviews" description="What customers, neighbors, and Seattle food writers say about Family Donut Shop in Northgate.">
+
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 pt-14 pb-16">
+    <p class="eyebrow">Reviews</p>
+    <h1 class="display-xl mt-4 max-w-4xl">"The best donuts in town." Take it from them, not us.</h1>
+
+    <div class="mt-12 grid grid-cols-2 sm:grid-cols-3 gap-6 max-w-3xl">
+      {site.ratings.map((r) => (
+        <div class="card p-6">
+          <div class="font-display text-3xl">{r.value}</div>
+          <div class="mt-2 text-xs uppercase tracking-widest text-[var(--color-cocoa-soft)]">{r.source}</div>
+          <div class="mt-1 text-xs text-[var(--color-cocoa-soft)]">{r.count}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 pb-24">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {reviews.map((r) => (
+        <figure class="card p-7 flex flex-col">
+          <div class="flex items-center justify-between mb-5">
+            <span class="text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-[var(--color-cream-deep)] text-[var(--color-cocoa)]">{r.source}</span>
+            {r.elite && <span class="text-[10px] uppercase tracking-widest text-[var(--color-glaze-deep)]">Elite</span>}
+          </div>
+          <blockquote class="font-display text-lg leading-snug text-[var(--color-ink)] flex-1">"{r.quote}"</blockquote>
+          <figcaption class="mt-6 pt-5 border-t border-[var(--color-line)] flex items-center justify-between text-sm">
+            <div>
+              <div class="font-medium">{r.author}</div>
+              <div class="text-[var(--color-cocoa-soft)] text-xs mt-0.5">{r.city}</div>
+            </div>
+            <div class="text-[var(--color-cocoa-soft)] text-xs">{r.date}</div>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <p class="mt-12 text-sm text-[var(--color-cocoa-soft)] max-w-2xl">
+      Reviews quoted verbatim from public sources. See full pages: <a class="underline decoration-[var(--color-glaze-deep)] underline-offset-4" href={site.social.yelp} target="_blank" rel="noopener">Yelp</a> · The Infatuation, Seattle's Child Doughnut Trail.
+    </p>
+  </section>
+
+</Layout>

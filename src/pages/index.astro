@@ -1,0 +1,230 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+import { homepageReviews } from '../data/reviews';
+import { homepagePhotos } from '../data/gallery';
+---
+<Layout pagePath="/">
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-14 lg:pt-24 pb-20 lg:pb-28 grid lg:grid-cols-12 gap-10 lg:gap-14 items-end">
+      <div class="lg:col-span-7 rise">
+        <p class="eyebrow">Northgate, Seattle <span class="dot bg-[var(--color-glaze)]"></span> Est. 1993</p>
+        <h1 class="display-xl mt-4">
+          Fresh donuts,<br />
+          <span class="squiggle">real fruit</span>,<br />
+          one little family.
+        </h1>
+        <p class="mt-8 text-lg max-w-xl text-[var(--color-cocoa)] leading-relaxed rise-2">
+          Pete and family have been frying donuts in this Northgate strip plaza since 1993. The apple fritters are dense and crisp at the edges. The blueberry cake is studded with real fruit. The buttermilk bar is exactly what you remember. We open at 5 a.m. and we sell out by lunch.
+        </p>
+        <div class="mt-10 flex flex-wrap items-center gap-3 rise-3">
+          <a href="/menu" class="btn btn-primary">See the Menu</a>
+          <a href="/visit" class="btn btn-ghost">Hours and Directions</a>
+        </div>
+        <div class="mt-12 grid grid-cols-3 gap-6 max-w-md rise-4">
+          {site.ratings.map((r) => (
+            <div>
+              <div class="font-display text-2xl leading-tight">{r.value}</div>
+              <div class="text-xs mt-1 text-[var(--color-cocoa-soft)] uppercase tracking-wide">{r.source}</div>
+              <div class="text-xs mt-0.5 text-[var(--color-cocoa-soft)]">{r.count}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 relative">
+        <div class="relative aspect-[4/5] rise-2">
+          <div class="photo absolute inset-0 shadow-xl">
+            <img src="/images/yelp/apple-fritter-hero.jpg" alt="A golden apple fritter, crisp on the edges and packed with cinnamon, sitting on parchment" loading="eager" fetchpriority="high" />
+          </div>
+          <div class="photo absolute -bottom-8 -left-10 w-44 h-44 rotate-[-6deg] hidden md:block shadow-xl rise-3">
+            <img src="/images/yelp/mochi-donuts.jpg" alt="A box of mochi donuts in assorted glazes" loading="lazy" />
+          </div>
+          <div class="absolute -top-6 -right-6 bg-[var(--color-butter)] text-[var(--color-ink)] rounded-2xl px-5 py-3 rotate-[3deg] hidden md:block rise-4">
+            <p class="text-xs uppercase tracking-widest">Today, fresh at</p>
+            <p class="font-display text-2xl leading-none mt-1">5:00 a.m.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Marquee strip of items -->
+    <div class="border-y border-[var(--color-line)] bg-[var(--color-cream-deep)]/70 overflow-hidden">
+      <div class="marquee-track flex whitespace-nowrap gap-12 py-5 text-[var(--color-cocoa)] font-display text-2xl">
+        {Array.from({ length: 2 }).map(() => (
+          <>
+            <span>Apple Fritter</span>
+            <span class="dot bg-[var(--color-glaze)] self-center"></span>
+            <span>Buttermilk Bar</span>
+            <span class="dot bg-[var(--color-butter)] self-center"></span>
+            <span>Old Fashioned</span>
+            <span class="dot bg-[var(--color-blueberry)] self-center"></span>
+            <span>Mochi Donut</span>
+            <span class="dot bg-[var(--color-glaze-deep)] self-center"></span>
+            <span>Blueberry Cake</span>
+            <span class="dot bg-[var(--color-butter)] self-center"></span>
+            <span>Maple Bacon Bar</span>
+            <span class="dot bg-[var(--color-glaze)] self-center"></span>
+            <span>French Cruller</span>
+            <span class="dot bg-[var(--color-blueberry)] self-center"></span>
+            <span>Croissant Donut</span>
+            <span class="dot bg-[var(--color-glaze-deep)] self-center"></span>
+          </>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 py-24 lg:py-32 grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-5">
+      <p class="eyebrow">Our story</p>
+      <h2 class="display-lg mt-4">A neighborhood shop that <span class="squiggle">stays a shop</span>.</h2>
+    </div>
+    <div class="lg:col-span-7 space-y-6 text-lg leading-relaxed text-[var(--color-cocoa)]">
+      <p>
+        Family Donut opened in 1993 in a small storefront off North Northgate Way. Three decades later, it is still the same family. Same fryers. Same recipes. Same little hole on a stick handed to you on your way out.
+      </p>
+      <p>
+        We are not a chain. We are not opening a second location. We are not putting our donuts in a vending machine. We are a husband-and-wife shop that opens at five in the morning, fries everything the day you eat it, and turns the lights out when the case is empty.
+      </p>
+      <p class="font-display text-2xl text-[var(--color-ink)]">
+        "Fresh and real donuts." That is the whole brief. Pete has been saying it since 1993.
+      </p>
+    </div>
+  </section>
+
+  <!-- SIGNATURE ITEMS -->
+  <section class="bg-[var(--color-cream-deep)]/70 border-y border-[var(--color-line)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-24">
+      <div class="flex items-end justify-between flex-wrap gap-6">
+        <div>
+          <p class="eyebrow">Signature</p>
+          <h2 class="display-lg mt-4 max-w-2xl">Three reasons the case is empty by lunch.</h2>
+        </div>
+        <a href="/menu" class="btn btn-ghost">See the full menu</a>
+      </div>
+
+      <div class="mt-14 grid md:grid-cols-3 gap-10">
+        <article class="rise">
+          <div class="photo aspect-[4/5]"><img src="/images/yelp/apple-fritter-hero.jpg" alt="Apple fritter with crisp edges" loading="lazy" /></div>
+          <h3 class="font-display text-2xl mt-6">Apple Fritter</h3>
+          <p class="text-sm uppercase tracking-widest text-[var(--color-cocoa-soft)] mt-1">$2.99 <span class="mx-1">·</span> the one they wrote about</p>
+          <p class="mt-3 text-[var(--color-cocoa)] leading-relaxed">Flat, dense, crisp at the edges, real cinnamon throughout. The Infatuation calls it the best in town.</p>
+        </article>
+
+        <article class="rise-2">
+          <div class="photo aspect-[4/5]"><img src="/images/yelp/mochi-donuts.jpg" alt="Mochi donuts in assorted glazes" loading="lazy" /></div>
+          <h3 class="font-display text-2xl mt-6">Mochi Donut</h3>
+          <p class="text-sm uppercase tracking-widest text-[var(--color-cocoa-soft)] mt-1">Cinnamon, chocolate, rotating</p>
+          <p class="mt-3 text-[var(--color-cocoa)] leading-relaxed">Chewy, springy, light. Locals say ours are the best in the city. We will not argue.</p>
+        </article>
+
+        <article class="rise-3">
+          <div class="photo aspect-[4/5]"><img src="/images/yelp/donuts-and-coffee.jpg" alt="A buttermilk bar and old fashioned beside a cup of coffee" loading="lazy" /></div>
+          <h3 class="font-display text-2xl mt-6">Buttermilk Bar</h3>
+          <p class="text-sm uppercase tracking-widest text-[var(--color-cocoa-soft)] mt-1">Moist <span class="mx-1">·</span> tangy <span class="mx-1">·</span> glazed clean</p>
+          <p class="mt-3 text-[var(--color-cocoa)] leading-relaxed">A grown-up classic. Pair with black coffee, eat it before the kids see it.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTO STRIP -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 py-24">
+    <div class="flex items-end justify-between flex-wrap gap-6 mb-10">
+      <div>
+        <p class="eyebrow">Around the shop</p>
+        <h2 class="display-lg mt-4">Just look at the case.</h2>
+      </div>
+      <a href="/gallery" class="btn btn-ghost">Full gallery</a>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
+      {homepagePhotos.map((p, i) => (
+        <div class={`photo aspect-square ${i === 0 ? 'md:col-span-2 md:row-span-2 aspect-square md:aspect-auto' : ''}`}>
+          <img src={p.src} alt={p.alt} loading="lazy" />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="bg-[var(--color-ink)] text-[var(--color-cream)]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-24">
+      <div class="flex items-end justify-between flex-wrap gap-6 mb-12">
+        <div>
+          <p class="eyebrow text-[var(--color-glaze)]">Real reviews</p>
+          <h2 class="display-lg mt-4">People do not show up at 5 a.m. for nothing.</h2>
+        </div>
+        <a href="/reviews" class="btn" style="border:1px solid var(--color-cream); color:var(--color-cream)">All reviews</a>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {homepageReviews.map((r) => (
+          <figure class="border border-white/15 rounded-3xl p-8 bg-white/[0.04]">
+            <blockquote class="font-display text-xl leading-snug">"{r.quote}"</blockquote>
+            <figcaption class="mt-6 flex items-center justify-between gap-4 text-sm">
+              <div>
+                <div class="font-medium">{r.author}{r.elite && <span class="ml-2 text-[var(--color-butter)] text-xs uppercase tracking-widest">Elite</span>}</div>
+                <div class="text-white/60">{r.city ? r.city + ' · ' : ''}{r.date}</div>
+              </div>
+              <span class="text-xs uppercase tracking-widest text-[var(--color-glaze)]">{r.source}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 py-24 grid lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <p class="eyebrow">Come find us</p>
+      <h2 class="display-lg mt-4">Open early. Closed Tuesdays. Sold out by lunch.</h2>
+      <p class="mt-6 text-lg text-[var(--color-cocoa)] leading-relaxed max-w-xl">
+        We are tucked into the Northgate plaza off North Northgate Way, between Gyro Sababa and Teriyaki Plus. There is a 7-Eleven next door and a shared lot out front. Walk in. Take a number from the case. Pay at the back. Free donut hole on your way out.
+      </p>
+      <div class="mt-8 grid grid-cols-2 gap-x-8 gap-y-4 text-sm max-w-md">
+        <div>
+          <div class="eyebrow">Address</div>
+          <p class="mt-1">{site.address.street}<br />{site.address.city}, {site.address.state} {site.address.zip}</p>
+        </div>
+        <div>
+          <div class="eyebrow">Phone</div>
+          <p class="mt-1"><a href={site.phoneLink} class="underline decoration-[var(--color-glaze-deep)] underline-offset-4">{site.phone}</a></p>
+        </div>
+        <div>
+          <div class="eyebrow">Hours</div>
+          <p class="mt-1">Wed to Mon, 5 a.m. to 2 p.m.<br />Tuesday closed</p>
+        </div>
+        <div>
+          <div class="eyebrow">Pro tip</div>
+          <p class="mt-1">Come before 9 a.m. on weekends, or you will be sad.</p>
+        </div>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="/visit" class="btn btn-primary">Get directions</a>
+        <a href={site.phoneLink} class="btn btn-ghost">Call ahead</a>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="photo aspect-[4/3]">
+        <img src="/images/yelp/display-case.jpg" alt="The Family Donut Shop display case stocked full of donuts in the morning" loading="lazy" />
+      </div>
+      <div class="card mt-6 p-6 flex items-center justify-between">
+        <div>
+          <p class="font-display text-2xl leading-none">5:00 a.m.</p>
+          <p class="text-sm text-[var(--color-cocoa-soft)] mt-1">Fresh and real, daily.</p>
+        </div>
+        <div class="text-right">
+          <p class="font-display text-2xl leading-none">Closed</p>
+          <p class="text-sm text-[var(--color-cocoa-soft)] mt-1">Tuesdays only.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

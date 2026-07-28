@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { photos } from '../data/gallery';
+
+const spanClass = (s: string | undefined) => {
+  if (s === 'tall') return 'md:row-span-2 aspect-[3/4] md:aspect-auto';
+  if (s === 'wide') return 'md:col-span-2 aspect-[4/3]';
+  return 'aspect-square';
+};
+---
+<Layout title="Gallery" pagePath="/gallery" description="Photos of donuts, the case, the shop, and the morning crowd at Family Donut Shop in Northgate Seattle.">
+
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 pt-14 pb-12">
+    <p class="eyebrow">Gallery</p>
+    <h1 class="display-xl mt-4 max-w-3xl">Donuts, the case, the shop.</h1>
+    <p class="mt-6 max-w-2xl text-lg text-[var(--color-cocoa)] leading-relaxed">
+      Every photo on this page is from a real customer at our Northgate shop. Thanks to the Yelp regulars who keep them coming.
+    </p>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 pb-24">
+    <div class="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] md:auto-rows-[220px] gap-3 md:gap-4">
+      {photos.map((p) => (
+        <figure class={`photo ${spanClass(p.span)}`}>
+          <img src={p.src} alt={p.alt} loading="lazy" />
+        </figure>
+      ))}
+    </div>
+    <p class="mt-10 text-xs text-[var(--color-cocoa-soft)] max-w-2xl">
+      Photo credits: Yelp reviewers including Vic A., Bryson M., Fernanda A., and other regulars. On the production site, these will be replaced with owner-provided imagery and proper releases.
+    </p>
+  </section>
+
+</Layout>

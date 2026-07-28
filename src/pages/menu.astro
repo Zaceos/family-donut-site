@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { menu, priceNote } from '../data/menu';
+
+const badgeStyle: Record<string, string> = {
+  signature: 'bg-[var(--color-glaze)] text-[var(--color-ink)]',
+  'staff-pick': 'bg-[var(--color-butter)] text-[var(--color-ink)]',
+  'fan-favorite': 'bg-[var(--color-blueberry)] text-[var(--color-cream)]',
+  new: 'bg-[var(--color-cocoa)] text-[var(--color-cream)]',
+  kids: 'bg-[var(--color-glaze-deep)] text-[var(--color-cream)]',
+};
+const badgeLabel: Record<string, string> = {
+  signature: 'Signature',
+  'staff-pick': 'Staff pick',
+  'fan-favorite': 'Fan favorite',
+  new: 'New',
+  kids: 'Kid favorite',
+};
+---
+<Layout title="Menu" pagePath="/menu" description="The full Family Donut Shop menu. Apple fritters, mochi donuts, buttermilk bars, croissant donuts, and the free donut hole on your way out.">
+
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 pt-14 pb-12">
+    <p class="eyebrow">Menu</p>
+    <h1 class="display-xl mt-4 max-w-3xl">Everything we fry, glazed, filled, and warm.</h1>
+    <p class="mt-6 max-w-2xl text-lg text-[var(--color-cocoa)] leading-relaxed">
+      The case rotates daily. We fry classics every morning and bring in a handful of seasonal specials. If your favorite is not in the case, ask. We probably have it tomorrow.
+    </p>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="rule"></div>
+  </div>
+
+  <section class="max-w-7xl mx-auto px-6 lg:px-10 py-16 space-y-20">
+    {menu.map((cat) => (
+      <article id={cat.id}>
+        <header class="grid lg:grid-cols-12 gap-6 items-end mb-10">
+          <div class="lg:col-span-5">
+            <p class="eyebrow">{cat.id}</p>
+            <h2 class="display-lg mt-3">{cat.title}</h2>
+          </div>
+          <p class="lg:col-span-7 text-[var(--color-cocoa)] leading-relaxed text-lg max-w-xl lg:justify-self-end">{cat.blurb}</p>
+        </header>
+
+        <ul class="grid md:grid-cols-2 gap-x-12 gap-y-2 border-t border-[var(--color-line)]">
+          {cat.items.map((item) => (
+            <li class="py-6 border-b border-[var(--color-line)] flex gap-6 items-start">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline gap-3 flex-wrap">
+                  <h3 class="font-display text-xl text-[var(--color-ink)]">{item.name}</h3>
+                  {item.badge && (
+                    <span class={`text-[10px] uppercase tracking-widest px-2 py-1 rounded-full ${badgeStyle[item.badge]}`}>
+                      {badgeLabel[item.badge]}
+                    </span>
+                  )}
+                </div>
+                <p class="mt-2 text-[var(--color-cocoa)] leading-relaxed text-sm">{item.description}</p>
+              </div>
+              {item.price && (
+                <div class="font-display text-xl text-[var(--color-ink)] whitespace-nowrap">{item.price}</div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </article>
+    ))}
+
+    <aside class="card p-8 lg:p-12 grid lg:grid-cols-2 gap-8 items-center">
+      <div>
+        <p class="eyebrow">A note on prices</p>
+        <h3 class="display-md mt-3">The case is the source of truth.</h3>
+        <p class="mt-4 text-[var(--color-cocoa)] leading-relaxed">{priceNote}</p>
+      </div>
+      <div class="space-y-3 text-sm">
+        <p class="font-display text-lg text-[var(--color-ink)]">Catering and dozens</p>
+        <p class="text-[var(--color-cocoa)] leading-relaxed">Need a dozen for the office, the team, the bus ride? Call ahead and we will set them aside. <a href="tel:+12063689107" class="underline decoration-[var(--color-glaze-deep)] underline-offset-4">(206) 368-9107</a>.</p>
+      </div>
+    </aside>
+  </section>
+
+</Layout>

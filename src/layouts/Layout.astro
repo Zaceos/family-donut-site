@@ -1,0 +1,38 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  pagePath?: string;
+}
+
+const { title, description = site.description, pagePath = '/' } = Astro.props;
+const fullTitle = title ? `${title} — ${site.fullName}` : `${site.fullName} — ${site.tagline}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/images/yelp/apple-fritter-hero.jpg" />
+    <meta name="theme-color" content="#FBF6EF" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Nav currentPath={pagePath} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
