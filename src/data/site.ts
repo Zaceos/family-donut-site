@@ -21,7 +21,27 @@ export const site = {
     yelp: 'https://www.yelp.com/biz/family-donut-shop-seattle-4',
   },
   ratings: [
-    { source: 'The Infatuation', value: 'Best in town', count: 'Aimee Rizzo, 2023' },
+    {
+      source: 'Google',
+      value: '4.8',
+      count: '695 reviews',
+      from: 'Google Business listing',
+      verifiedOn: '2026-08-19',
+    },
+    {
+      source: 'Yelp',
+      value: '4.6',
+      count: '371 reviews',
+      from: 'https://www.yelp.com/biz/family-donut-shop-seattle-4',
+      verifiedOn: '2026-08-19',
+    },
+    {
+      source: 'The Infatuation',
+      value: 'Best in town',
+      count: 'Aimee Rizzo, Aug 2023',
+      from: 'https://www.theinfatuation.com/seattle/reviews/family-donut-shop',
+      verifiedOn: '2026-08-19',
+    },
   ],
   hours: [
     { day: 'Monday', open: '5:00 AM', close: '2:00 PM' },
